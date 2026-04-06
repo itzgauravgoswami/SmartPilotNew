@@ -1,0 +1,267 @@
+@import "tailwindcss";
+
+/* Custom dark variant for Tailwind CSS v4 */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Gridlines container styles */
+.gridlines-container {
+  position: fixed;
+  inset: 0;
+  z-index: -10;
+  pointer-events: none;
+  background-image: 
+    linear-gradient(to right, var(--grid-line-color) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line-color) 1px, transparent 1px);
+  background-size: 50px 50px;
+  mask-image: radial-gradient(circle at 50% 25%, black 20%, transparent 85%);
+  -webkit-mask-image: radial-gradient(circle at 50% 25%, black 20%, transparent 85%);
+  opacity: 0.8;
+}
+
+.orange-glow {
+  position: absolute;
+  top: -150px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 800px;
+  height: 400px;
+  background: radial-gradient(ellipse at center, rgba(249, 115, 22, 0.15) 0%, rgba(249, 115, 22, 0.05) 50%, transparent 100%);
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: -20;
+}
+
+/* Dashboard-specific high-visibility orange gridlines and glow */
+.dashboard-gridlines {
+  position: absolute;
+  inset: 0;
+  z-index: 0; /* Sits behind other relative elements and siblings in natural stacking order */
+  pointer-events: none;
+  background-image: 
+    linear-gradient(to right, rgba(249, 115, 22, 0.18) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(249, 115, 22, 0.18) 1px, transparent 1px);
+  background-size: 45px 45px;
+  mask-image: radial-gradient(circle at 50% 40%, black 25%, transparent 90%);
+  -webkit-mask-image: radial-gradient(circle at 50% 40%, black 25%, transparent 90%);
+  opacity: 0.85;
+}
+
+html.dark .dashboard-gridlines {
+  background-image: 
+    linear-gradient(to right, rgba(249, 115, 22, 0.09) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(249, 115, 22, 0.09) 1px, transparent 1px);
+  opacity: 0.9;
+}
+
+.dashboard-bg-glow {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 1000px;
+  height: 600px;
+  background: radial-gradient(circle at center, rgba(249, 115, 22, 0.08) 0%, rgba(249, 115, 22, 0.02) 60%, transparent 80%);
+  filter: blur(100px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+html.dark .dashboard-bg-glow {
+  background: radial-gradient(circle at center, rgba(249, 115, 22, 0.06) 0%, rgba(249, 115, 22, 0.01) 65%, transparent 85%);
+}
+
+/* Navbar rounded custom styles with black border and orange gradient border */
+.navbar-gradient-border {
+  position: relative;
+  border-radius: 9999px;
+  border: 1px solid rgba(0, 0, 0, 0.9); /* Fine black border */
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+:root.dark .navbar-gradient-border {
+  border-color: rgba(255, 255, 255, 0.1); /* Subtle dark border */
+  box-shadow: 0 10px 35px -10px rgba(0, 0, 0, 0.5), 0 0 15px rgba(249, 115, 22, 0.05);
+}
+
+/* Pseudo-element for the orange gradient in the border */
+.navbar-gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: -1.5px; /* tight alignment */
+  border-radius: 9999px;
+  padding: 1px; /* 1px gradient border */
+  background: linear-gradient(90deg, #f97316, rgba(249, 115, 22, 0.3), #ea580c);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Add custom variables for gridlines and colors */
+:root {
+  --grid-line-color: rgba(249, 115, 22, 0.15); /* visible orange grid in light mode */
+}
+
+:root.dark {
+  --grid-line-color: rgba(249, 115, 22, 0.12); /* glowing orange grid in dark mode */
+}
+
+/* Smooth color transitions for UI elements */
+body, #root, header, nav, a, button, h1, h2, p, code {
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+body {
+  margin: 0;
+  background-color: #ffffff;
+}
+
+html.dark body {
+  background-color: #000000; /* Pure black background */
+}
+
+/* Auth pages (login/signup) background glow — sits above the solid bg but below the card */
+.auth-bg-glow {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -60%);
+  width: 1200px;
+  height: 680px;
+  background: radial-gradient(ellipse at center,
+    rgba(249, 115, 22, 0.25) 0%,
+    rgba(249, 115, 22, 0.12) 40%,
+    rgba(249, 115, 22, 0.04) 65%,
+    transparent 80%
+  );
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+html.dark .auth-bg-glow {
+  background: radial-gradient(ellipse at center,
+    rgba(249, 115, 22, 0.15) 0%,
+    rgba(249, 115, 22, 0.07) 45%,
+    transparent 75%
+  );
+}
+
+/* Auth pages gridlines — same grid but fixed so it overlays the background */
+.auth-gridlines {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, rgba(249, 115, 22, 0.18) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(249, 115, 22, 0.18) 1px, transparent 1px);
+  background-size: 50px 50px;
+  mask-image: radial-gradient(ellipse 85% 85% at 50% 50%, black 10%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 85% 85% at 50% 50%, black 10%, transparent 100%);
+}
+
+html.dark .auth-gridlines {
+  background-image:
+    linear-gradient(to right, rgba(249, 115, 22, 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(249, 115, 22, 0.07) 1px, transparent 1px);
+}
+
+/* Auth card — premium orange glow shadow */
+.auth-card-shadow {
+  box-shadow:
+    0 0 0 1px rgba(249, 115, 22, 0.10),
+    0 8px 24px -4px rgba(249, 115, 22, 0.15),
+    0 24px 56px -8px rgba(249, 115, 22, 0.18),
+    0 48px 96px -20px rgba(249, 115, 22, 0.10);
+  transition: box-shadow 0.3s ease;
+}
+
+html.dark .auth-card-shadow {
+  box-shadow:
+    0 0 0 1px rgba(249, 115, 22, 0.18),
+    0 8px 24px -4px rgba(249, 115, 22, 0.28),
+    0 24px 56px -8px rgba(249, 115, 22, 0.35),
+    0 60px 100px -20px rgba(249, 115, 22, 0.18);
+}
+
+/* Hide scrollbars globally or locally while keeping scrolling functionality */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* Custom premium orange gradient scrollbar - Global across the whole website */
+::-webkit-scrollbar {
+  width: 6px; /* Thin scrollbar */
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #f97316, #f59e0b); /* Orange/Amber gradient */
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #ea580c, #d97706);
+}
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #f97316 transparent;
+}
+
+/* @media print for pixel-perfect A4 Invoice PDF generation */
+@media print {
+  /* Hide all dashboard chrome, sidebar, inputs, and utilities */
+  .no-print,
+  aside,
+  header,
+  form,
+  button,
+  .fixed,
+  iframe,
+  [role="button"] {
+    display: none !important;
+  }
+  
+  /* Reset document and screen layouts */
+  body, html, #root, main {
+    background: #ffffff !important;
+    color: #000000 !important;
+    width: 100% !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+    display: block !important;
+  }
+  
+  /* Isolate paper invoice container */
+  .invoice-print-area {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    display: block !important;
+    overflow: visible !important;
+  }
+  
+  /* Format A4 sheet inside preview */
+  .invoice-print-area > div {
+    border: none !important;
+    box-shadow: none !important;
+    padding: 12px !important; /* Retains page margins in print */
+    margin: 0 auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+  }
+}
