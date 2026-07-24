@@ -1,3 +1,5 @@
+const BASE_URL = import.meta.env.VITE_API_URL || '';
+
 export const api = {
   post: async (path, data) => {
     const token = localStorage.getItem('token');
@@ -8,7 +10,7 @@ export const api = {
       headers['Authorization'] = `Bearer ${token}`;
     }
 
-    const response = await fetch(`/api${path}`, {
+    const response = await fetch(`${BASE_URL}/api${path}`, {
       method: 'POST',
       headers,
       body: JSON.stringify(data),
@@ -28,7 +30,7 @@ export const api = {
       headers['Authorization'] = `Bearer ${token}`;
     }
 
-    const response = await fetch(`/api${path}`, {
+    const response = await fetch(`${BASE_URL}/api${path}`, {
       method: 'GET',
       headers,
     });
@@ -49,7 +51,7 @@ export const api = {
       headers['Authorization'] = `Bearer ${token}`;
     }
 
-    const response = await fetch(`/api${path}`, {
+    const response = await fetch(`${BASE_URL}/api${path}`, {
       method: 'PUT',
       headers,
       body: JSON.stringify(data),
@@ -69,7 +71,7 @@ export const api = {
       headers['Authorization'] = `Bearer ${token}`;
     }
 
-    const response = await fetch(`/api${path}`, {
+    const response = await fetch(`${BASE_URL}/api${path}`, {
       method: 'DELETE',
       headers,
     });
