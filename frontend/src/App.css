@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
 /* Custom dark variant for Tailwind CSS v4 */
 @custom-variant dark (&:where(.dark, .dark *));
 
@@ -115,6 +121,8 @@ body, #root, header, nav, a, button, h1, h2, p, code {
 body {
   margin: 0;
   background-color: #ffffff;
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 html.dark body {

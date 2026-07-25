@@ -88,13 +88,21 @@ export default function HomePage() {
       answer: 'Smart Pilot is a month-to-month subscription. You can cancel your ₹21/month premium plan at any time with no penalties or hidden fees.',
     },
     {
+      question: 'How do the Invoice Maker and Invoice History work?',
+      answer: 'Our Invoice Maker allows you to design professional PDF invoices with customized company branding, customer inputs, and items. All generated documents are instantly archived in your Invoice History log, where you can search, view, or delete them anytime.',
+    },
+    {
+      question: 'What modules are included in the Premium Plan?',
+      answer: 'The ₹21/month Premium plan grants unrestricted access to all modules in the co-pilot suite: Invoice Maker & Archive, Sales Analytics Graphs, AI Chat Co-pilot, Workspace Task Planner, AI Campaign Emailer, and real-time Team Connect collaboration rooms.',
+    },
+    {
       question: 'Do you offer custom Enterprise setups?',
       answer: 'Yes! While our general Premium plan is ₹21/month, we can arrange dedicated VPC deployments and custom SLAs for enterprise operations. Please contact our support.',
     },
   ]
 
   return (
-    <div className="min-h-screen bg-transparent text-zinc-800 dark:text-zinc-300 transition-colors duration-300 relative">
+    <div className="min-h-screen bg-transparent text-zinc-800 dark:text-zinc-300 transition-colors duration-300 relative overflow-x-hidden">
       <div className="gridlines-container"></div>
       <div className="orange-glow"></div>
 
@@ -148,16 +156,16 @@ export default function HomePage() {
               <div className="lg:col-span-7 flex flex-col justify-center text-left">
                 <span className="text-orange-600 dark:text-orange-500 font-extrabold tracking-wider text-xs uppercase mb-2">Our Mission</span>
                 <h2 className="text-3xl sm:text-4xl font-extrabold text-zinc-950 dark:text-zinc-50 tracking-tight leading-tight">
-                  Navigating the complexity of human productivity
+                  Empowering founders and teams to manage business operations on autopilot
                 </h2>
                 <p className="mt-6 text-zinc-600 dark:text-zinc-400 leading-relaxed text-sm sm:text-base">
-                  Smart Pilot was formed by a network of automation developers and systems architects who grew tired of the endless time spent managing files, manually syncing databases, and typing repetitive status reports.
+                  Smart Pilot was engineered by Gaurav Goswami to streamline the daily operations of freelancers, developers, and small business teams. Tired of hopping between scattered billing software, task checklists, email campaign writers, and chat apps, we consolidated everything into a single business co-pilot dashboard.
                 </p>
                 <p className="mt-4 text-zinc-600 dark:text-zinc-400 leading-relaxed text-sm sm:text-base">
-                  We believe that premium software shouldn't carry an enterprise price tag. That is why we are democratizing task automation by providing our full-featured AI co-pilot suite at an accessible, straightforward price.
+                  We believe that premium operations software shouldn't carry a heavy enterprise price tag. Smart Pilot democratizes team tools by providing professional invoicing, sales graphs, AI assistants, and team connect chat spaces in one unified premium layout at just ₹21/month.
                 </p>
                 <div className="mt-8 flex flex-wrap gap-3">
-                  {['SOC2 Certified', 'GDPR Compliant', 'E2E Encrypted', '24/7 Active Agent Support'].map((badge) => (
+                  {['Invoice Generator', 'AI Co-pilot Chat', 'Revenue Analytics', 'Team Connect Rooms'].map((badge) => (
                     <span
                       key={badge}
                       className="inline-flex items-center gap-1.5 bg-orange-50 dark:bg-orange-950/20 border border-orange-200/50 dark:border-orange-500/30 text-orange-700 dark:text-orange-400 rounded-lg px-3.5 py-1.5 text-xs font-bold transition-transform duration-300 hover:scale-105"
@@ -170,18 +178,18 @@ export default function HomePage() {
               </div>
               <div className="lg:col-span-5 grid grid-cols-2 gap-4">
                 {[
-                  { value: '10x', label: 'Workflow Speed' },
-                  { value: '99.9%', label: 'Task Accuracy' },
-                  { value: '24/7', label: 'AI Monitoring' },
+                  { value: '1-Click', label: 'Invoice Generation' },
+                  { value: '100%', label: 'Secure Archive Log' },
+                  { value: '6+', label: 'Integrated Modules' },
                 ].map((stat) => (
                   <div key={stat.label} className="bg-white/60 dark:bg-zinc-900/60 backdrop-blur-xs border border-zinc-200/60 dark:border-zinc-800/60 p-6 rounded-2xl flex flex-col justify-center items-center text-center shadow-xs transition-all duration-300 hover:shadow-md hover:shadow-orange-500/5 hover:-translate-y-0.5">
-                    <span className="text-3xl sm:text-4xl font-extrabold bg-gradient-to-r from-orange-500 to-amber-500 bg-clip-text text-transparent">{stat.value}</span>
-                    <span className="mt-2 text-xs font-bold text-zinc-700 dark:text-zinc-400">{stat.label}</span>
+                    <span className="text-2xl sm:text-3xl font-extrabold bg-gradient-to-r from-orange-500 to-amber-500 bg-clip-text text-transparent">{stat.value}</span>
+                    <span className="mt-2 text-[10px] font-bold text-zinc-700 dark:text-zinc-400">{stat.label}</span>
                   </div>
                 ))}
                 <div className="bg-white/60 dark:bg-zinc-900/60 backdrop-blur-xs border border-orange-200/80 dark:border-orange-500/20 p-6 rounded-2xl flex flex-col justify-center items-center text-center shadow-sm bg-orange-50/20 dark:bg-orange-950/10 transition-all duration-300 hover:shadow-md hover:shadow-orange-500/10 hover:-translate-y-0.5">
                   <span className="text-3xl sm:text-4xl font-extrabold text-orange-600 dark:text-orange-500">₹21</span>
-                  <span className="mt-2 text-xs font-bold text-orange-700 dark:text-orange-400">Premium Pricing</span>
+                  <span className="mt-2 text-[10px] font-bold text-orange-700 dark:text-orange-400">Premium Pricing</span>
                 </div>
               </div>
             </div>
@@ -198,25 +206,40 @@ export default function HomePage() {
             <span className="text-orange-600 dark:text-orange-500 font-extrabold tracking-wider text-xs uppercase mb-2 block">Premium Features</span>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-zinc-950 dark:text-zinc-50 tracking-tight">Work Smarter. Automate the Rest.</h2>
             <p className="mt-4 text-sm sm:text-base text-zinc-600 dark:text-zinc-400">
-              Smart Pilot connects your services and uses state-of-the-art visual panels to guide work routines seamlessly.
+              Smart Pilot is equipped with a suite of modules designed to streamline invoicing, team communication, and productivity.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
-                icon: 'M13 10V3L4 14h7v7l9-11h-7z',
-                tag: 'AI Autopilot', title: 'Autonomous Pilot Agent',
-                desc: 'Observer agents analyze your recurrent daily workflow activities and dynamically deploy autonomous task scripts on your behalf.',
+                icon: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01',
+                tag: 'Billing & Invoices', title: 'Smart Invoice Architect',
+                desc: 'Generate customized professional invoices instantly and manage them under a centralized, searchable history database.',
               },
               {
-                icon: 'M11 4a2 2 0 114 0v1a2 2 0 002 2h3a2 2 0 012 2v3a2 2 0 01-2 2h-1a2 2 0 00-2 2v1a2 2 0 01-4 0v-1a2 2 0 00-2-2H9a2 2 0 00-2 2v1a2 2 0 01-4 0v-1a2 2 0 00-2-2H3a2 2 0 01-2-2V9a2 2 0 012-2h1a2 2 0 002-2V4a2 2 0 014 0v1a2 2 0 002 2h3a2 2 0 002-2V4z',
-                tag: 'Connected Hub', title: 'Hyper-Connected Integrations',
-                desc: 'Sync databases, files, and notification services instantly across Slack, GitHub, Jira, Notion, and Gmail.',
+                icon: 'M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z',
+                tag: 'AI Assistant', title: 'Integrated Co-pilot Chat',
+                desc: 'Chat with an advanced conversational agent to draft templates, analyze metrics, answer queries, and coordinate daily tasks.',
               },
               {
-                icon: 'M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z',
-                tag: 'Workflow Designer', title: 'Zero-Code Builder Panel',
-                desc: 'Visually sketch conditional execution branches, trigger nodes, and automated outputs in a clean visual canvas.',
+                icon: 'M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 002 2h2a2 2 0 002-2',
+                tag: 'Business Analytics', title: 'Sales & Revenue Charts',
+                desc: 'Audit your metrics using real-time graphical analytics, customized timelines, and exportable financial overview charts.',
+              },
+              {
+                icon: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4',
+                tag: 'Productivity', title: 'Task & Milestone Planner',
+                desc: 'Define checklists, prioritize operations, assign key deadlines, and follow roadmap boards to keep work aligned.',
+              },
+              {
+                icon: 'M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2',
+                tag: 'Marketing', title: 'AI-Powered Campaign Emailer',
+                desc: 'Compose high-converting sales pitches, product updates, newsletters, and email responses with contextual AI assistance.',
+              },
+              {
+                icon: 'M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2m16-10a4 4 0 11-8 0 4 4 0 018 0zm2 10v-2a4 4 0 00-3-3.87m-4-12a4 4 0 010 7.75',
+                tag: 'Collaboration', title: 'Team Connect Hub',
+                desc: 'Invite workspace team members, chat in shared channels, split workloads, and coordinate milestones simultaneously.',
               },
             ].map((card) => (
               <div key={card.title} className="bg-white/60 dark:bg-zinc-900/60 backdrop-blur-xs border border-zinc-200/60 dark:border-zinc-800/60 p-8 rounded-2xl shadow-xs hover:shadow-lg hover:shadow-orange-500/5 transition-all duration-300 group hover:-translate-y-1 text-left">
@@ -244,14 +267,14 @@ export default function HomePage() {
               <span className="text-orange-600 dark:text-orange-500 font-extrabold tracking-wider text-xs uppercase mb-2 block">Our Workflow</span>
               <h2 className="text-3xl sm:text-4xl font-extrabold text-zinc-950 dark:text-zinc-50 tracking-tight">Get Started In Three Simple Steps</h2>
               <p className="mt-4 text-sm sm:text-base text-zinc-600 dark:text-zinc-400">
-                No code required. Seamless onboarding designed to get your pipelines flying in minutes.
+                Setup your workspace and deploy advanced business automations in under five minutes.
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {[
-                { num: '01', title: 'Connect Tools', desc: 'Connect Slack, GitHub, Jira, and mail providers using secure, one-click OAuth authentication credentials.' },
-                { num: '02', title: 'Map Routines', desc: 'Select from ready-made templates or drag elements to visually sketch trigger events and subsequent actions.' },
-                { num: '03', title: 'Deploy Autopilot', desc: 'Activate your agent. It handles events, updates databases, and sends notifications seamlessly in the background.' },
+                { num: '01', title: 'Register Company & Settings', desc: 'Initialize your workspace, set currency preferences, select local tax parameters, and setup your company profile.' },
+                { num: '02', title: 'Utilize AI Business Tools', desc: 'Design professional invoices, draft marketing campaign emails, coordinate tasks, and converse with the co-pilot chat.' },
+                { num: '03', title: 'Analyze Growth & Collaborate', desc: 'Invite teammates, track real-time analytics graphs, check complete billing histories, and scale operations smoothly.' },
               ].map((step) => (
                 <div key={step.num} className="flex flex-col items-center text-center p-6 bg-white/60 dark:bg-zinc-900/60 backdrop-blur-xs rounded-2xl border border-zinc-200/60 dark:border-zinc-800/60 shadow-xs transition-all duration-300 hover:shadow-md hover:-translate-y-0.5">
                   <span className="text-5xl font-extrabold text-orange-200 dark:text-orange-950/50 mb-4">{step.num}</span>

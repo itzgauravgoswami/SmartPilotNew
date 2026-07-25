@@ -618,22 +618,41 @@ export default function Dashboard() {
         
         {/* ─── TOP NAVBAR ──────────────────────────────────────────────────────── */}
         <header className="h-16 bg-white dark:bg-black/60 backdrop-blur-md border-b border-[#e8ecf4] dark:border-zinc-800/60 px-6 flex items-center justify-between z-20 shrink-0">
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2">
             <button
-              onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
-              className="p-1 rounded-lg text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200 cursor-pointer"
+              onClick={() => {
+                if (window.innerWidth < 768) {
+                  setMobileMenuOpen(!mobileMenuOpen);
+                } else {
+                  setSidebarCollapsed(!sidebarCollapsed);
+                }
+              }}
+              className="p-1 rounded-lg text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200 cursor-pointer shrink-0"
             >
               <Menu size={18} />
             </button>
-            <h1 className="text-sm font-extrabold text-zinc-900 dark:text-zinc-50 tracking-tight">
-              Dashboard Overview
-            </h1>
+            <div className="flex items-center gap-2.5 ml-1">
+              <img
+                src="/Assets/Logos/Logo (MAIN).png"
+                alt="Smart Pilot Logo"
+                className="h-7 w-auto object-contain block dark:hidden md:hidden"
+              />
+              <img
+                src="/Assets/Logos/Logo (White).png"
+                alt="Smart Pilot Logo"
+                className="h-7 w-auto object-contain hidden dark:block md:hidden"
+              />
+              <span className="font-extrabold text-sm text-zinc-950 dark:text-zinc-50 tracking-tight shrink-0">
+                <span className="md:hidden">Smart Pilot</span>
+                <span className="hidden md:inline">Dashboard Overview</span>
+              </span>
+            </div>
           </div>
 
           {/* Right Header Controls */}
           <div className="flex items-center gap-3">
             {/* Systems Uptime */}
-            <div className="flex items-center gap-1 bg-orange-50 dark:bg-orange-950/25 border border-orange-200/50 dark:border-orange-500/20 text-orange-600 dark:text-orange-400 px-3 py-1 rounded-full text-xs font-bold">
+            <div className="hidden sm:flex items-center gap-1 bg-orange-50 dark:bg-orange-950/25 border border-orange-200/50 dark:border-orange-500/20 text-orange-600 dark:text-orange-400 px-3 py-1 rounded-full text-xs font-bold shrink-0">
               <Activity size={13} className="text-orange-500" />
               <span>All Systems Normal</span>
             </div>
@@ -659,12 +678,12 @@ export default function Dashboard() {
             )}
 
             {/* Plan indicator */}
-            <div className="flex items-center gap-2 bg-[#FAF5FF] dark:bg-[#1a0e2e]/40 border border-[#E9D5FF] dark:border-[#8B5CF6]/20 px-3 py-1 rounded-full text-xs font-bold">
-              <Zap size={13} className="text-[#8B5CF6]" />
-              <span className="text-[#8B5CF6] text-[10px] flex items-center gap-1.5">
+            <div className="flex items-center justify-center bg-[#FAF5FF] dark:bg-[#1a0e2e]/40 border border-[#E9D5FF] dark:border-[#8B5CF6]/20 p-1.5 sm:px-3 sm:py-1 rounded-full text-xs font-bold shrink-0" title={`${user.plan} Account`}>
+              <Zap size={13} className="text-[#8B5CF6] shrink-0" />
+              <span className="text-[#8B5CF6] text-[10px] hidden sm:flex items-center gap-1.5 ml-1.5">
                 <span>{user.plan} Account</span>
                 {user.plan === 'Premium' && user.planExpiresAt && (
-                  <span className="opacity-75 text-[9px] font-medium border-l border-[#8B5CF6]/30 pl-1.5">
+                  <span className="opacity-75 text-[9px] font-medium border-l border-[#8B5CF6]/30 pl-1.5 hidden md:inline">
                     Expires: {new Date(user.planExpiresAt).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })}
                   </span>
                 )}
@@ -698,14 +717,6 @@ export default function Dashboard() {
                 className="w-full h-full object-cover"
               />
             </div>
-
-            {/* Mobile menu button */}
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-xl text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200 md:hidden cursor-pointer"
-            >
-              <Menu size={16} />
-            </button>
           </div>
         </header>
 
@@ -715,7 +726,19 @@ export default function Dashboard() {
             <div className="w-64 bg-white dark:bg-black h-full p-4 flex flex-col justify-between border-r border-[#e8ecf4] dark:border-zinc-800">
               <div>
                 <div className="flex justify-between items-center mb-6">
-                  <span className="font-extrabold text-base text-zinc-850 dark:text-zinc-50">Smart Pilot</span>
+                  <div className="flex items-center gap-2">
+                    <img
+                      src="/Assets/Logos/Logo (MAIN).png"
+                      alt="Smart Pilot Logo"
+                      className="h-7 w-auto object-contain block dark:hidden"
+                    />
+                    <img
+                      src="/Assets/Logos/Logo (White).png"
+                      alt="Smart Pilot Logo"
+                      className="h-7 w-auto object-contain hidden dark:block"
+                    />
+                    <span className="font-extrabold text-base text-zinc-850 dark:text-zinc-50">Smart Pilot</span>
+                  </div>
                   <button onClick={() => setMobileMenuOpen(false)} className="p-1 rounded-lg text-zinc-400"><X size={18} /></button>
                 </div>
                 <div className="space-y-1">

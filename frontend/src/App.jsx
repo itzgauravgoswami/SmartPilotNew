@@ -4,6 +4,7 @@ import LoginPage from './pages/LoginPage'
 import SignupPage from './pages/SignupPage'
 import DashboardPage from './pages/DashboardPage'
 import ForgotPasswordPage from './pages/ForgotPasswordPage'
+import NotFoundPage from './pages/NotFoundPage'
 import './App.css'
 
 export default function App() {
@@ -14,8 +15,9 @@ export default function App() {
       <Route path="/signup" element={<SignupPage />} />
       <Route path="/forgot-password" element={<ForgotPasswordPage />} />
       <Route path="/dashboard/*" element={<DashboardPage />} />
-      {/* Catch-all: redirect unknown paths to home */}
-      <Route path="*" element={<Navigate to="/" replace />} />
+      <Route path="/404" element={<NotFoundPage />} />
+      {/* Catch-all: redirect unknown paths to 404 */}
+      <Route path="*" element={<Navigate to="/404" replace />} />
     </Routes>
   )
 }
