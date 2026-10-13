@@ -18,6 +18,8 @@ router.get('/', protect, async (req, res) => {
 // POST /api/invoices
 router.post('/', protect, async (req, res) => {
   try {
+    await Invoice.collection.dropIndex('invoiceNumber_1').catch(() => {});
+
     const {
       customerId, invoiceNo, date, dueDate, currency, status,
       items, subtotal, totalDiscount, totalTax, grandTotal,

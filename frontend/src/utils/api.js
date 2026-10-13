@@ -1,5 +1,23 @@
 const BASE_URL = import.meta.env.VITE_API_URL || '';
 
+const handleResponse = async (response) => {
+  let resData = {};
+  try {
+    resData = await response.json();
+  } catch (_) {
+    // Handle non-JSON response body safely
+  }
+
+  if (!response.ok) {
+    if (response.status === 401) {
+      setToken(null);
+      setLoggedIn(false);
+    }
+    throw new Error(resData.message || `Request failed with status ${response.status}`);
+  }
+  return resData;
+};
+
 export const api = {
   post: async (path, data) => {
     const token = localStorage.getItem('token');
@@ -16,11 +34,7 @@ export const api = {
       body: JSON.stringify(data),
     });
 
-    const resData = await response.json();
-    if (!response.ok) {
-      throw new Error(resData.message || 'API request failed');
-    }
-    return resData;
+    return handleResponse(response);
   },
 
   get: async (path) => {
@@ -35,11 +49,7 @@ export const api = {
       headers,
     });
 
-    const resData = await response.json();
-    if (!response.ok) {
-      throw new Error(resData.message || 'API request failed');
-    }
-    return resData;
+    return handleResponse(response);
   },
 
   put: async (path, data) => {
@@ -57,11 +67,7 @@ export const api = {
       body: JSON.stringify(data),
     });
 
-    const resData = await response.json();
-    if (!response.ok) {
-      throw new Error(resData.message || 'API request failed');
-    }
-    return resData;
+    return handleResponse(response);
   },
 
   delete: async (path) => {
@@ -76,11 +82,7 @@ export const api = {
       headers,
     });
 
-    const resData = await response.json();
-    if (!response.ok) {
-      throw new Error(resData.message || 'API request failed');
-    }
-    return resData;
+    return handleResponse(response);
   },
 };
 

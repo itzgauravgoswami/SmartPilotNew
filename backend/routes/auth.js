@@ -6,6 +6,15 @@ const axios = require('axios');
 const User = require('../models/User');
 const Session = require('../models/Session');
 const OTP = require('../models/OTP');
+const Task = require('../models/Task');
+const Customer = require('../models/Customer');
+const Product = require('../models/Product');
+const Invoice = require('../models/Invoice');
+const SentEmail = require('../models/SentEmail');
+const TeamMember = require('../models/TeamMember');
+const ChatRequest = require('../models/ChatRequest');
+const PrivateMessage = require('../models/PrivateMessage');
+const ChannelMessage = require('../models/ChannelMessage');
 const { signToken, hashToken } = require('../utils/token');
 const { sendOtpEmail, sendWelcomeEmail, sendPasswordResetOtp } = require('../utils/email');
 const { parseDevice } = require('../utils/device');
@@ -760,6 +769,39 @@ router.post('/reset-password', async (req, res) => {
   } catch (err) {
     console.error('[reset-password]', err.message);
     res.status(500).json({ message: 'Failed to reset password. Please try again.' });
+  }
+});
+
+/**
+ * DELETE /api/auth/delete-account
+ * Permanently delete current user account and all associated data
+ */
+router.delete('/delete-account', protect, async (req, res) => {
+  try {
+    const userId = req.user._id;
+
+    // Delete active sessions and OTP records
+    await Session.deleteMany({ userId });
+    await OTP.deleteMany({ email: req.user.email });
+
+    // Delete user created resources
+    await Task.deleteMany({ userId });
+    await Customer.deleteMany({ userId });
+    await Product.deleteMany({ userId });
+    await Invoice.deleteMany({ userId });
+    await SentEmail.deleteMany({ userId });
+    await TeamMember.deleteMany({ userId });
+    await ChatRequest.deleteMany({ $or: [{ senderId: userId }, { recipientId: userId }] });
+    await PrivateMessage.deleteMany({ $or: [{ senderId: userId }, { recipientId: userId }] });
+    await ChannelMessage.deleteMany({ senderId: userId });
+
+    // Delete user account
+    await User.findByIdAndDelete(userId);
+
+    res.json({ success: true, message: 'Account deleted successfully.' });
+  } catch (err) {
+    console.error('[delete-account]', err.message || err);
+    res.status(500).json({ message: 'Failed to delete account. Please try again.' });
   }
 });
 
